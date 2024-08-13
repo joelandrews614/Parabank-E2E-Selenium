@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class HomePage {
 
@@ -12,29 +13,36 @@ public class HomePage {
 		this.dri = dri;
 	}
 	
+	//Home Page Top Panel Locators:	
+	private By homepagelogo_gif = By.xpath("//img[@alt='ParaBank']");
+	private By headerPanel_div = By.xpath("//div[@id='headerPanel']"); 
+	
+	//Login Functionality Locators:
 	private By username_txt = By.xpath("//input[@name='username']");
 	private By password_txt = By.xpath("//input[@name='password']");
+	private By loginBtn = By.xpath("//input[@type='submit']");
+	private By loginTitle = By.xpath("//div[@id='leftPanel']/h2");
 	
-	
-	public boolean isUsernameTxtExists() {
-		WebElement ele = dri.findElement(username_txt);
-		return ele.isDisplayed();
+	public void validateTopPanel() {
+		Assert.assertEquals(dri.findElement(homepagelogo_gif).isDisplayed(), true);
+		Assert.assertEquals(dri.findElement(headerPanel_div).isDisplayed(), true);
 	}
 	
-	public void enterUsername(String username) {
-		WebElement ele = dri.findElement(username_txt);
-		ele.sendKeys(username);
+	public void validateCustomerLoginFields() {
+		Assert.assertEquals(dri.findElement(loginTitle).getText(), "Customer Login");
+		Assert.assertEquals(dri.findElement(username_txt).isDisplayed(), true);
+		Assert.assertEquals(dri.findElement(password_txt).isDisplayed(), true);
+		Assert.assertEquals(dri.findElement(loginBtn).isDisplayed(), true);	
 	}
 	
-	
-	public boolean isPasswordTxtExists() {
-		WebElement ele = dri.findElement(password_txt);
-		return ele.isDisplayed();
+	public void enterUsername(String username) {		
+		dri.findElement(username_txt).sendKeys(username);
 	}
-	
 	public void enterPassword(String password) {
-		WebElement ele = dri.findElement(password_txt);
-		ele.sendKeys(password);
+		dri.findElement(password_txt).sendKeys(password);
+	}
+	public void clickLoginbtn() {
+		dri.findElement(loginBtn).click();
 	}
 	
 }

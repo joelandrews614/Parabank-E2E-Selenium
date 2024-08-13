@@ -33,10 +33,16 @@ public class Home {
 	}
 	
 	@Test
-	public void TC_02_Validate_Login_Fields() {
+	public void TC_02_Validate_HomePage() {
 		
-		Assert.assertEquals(homePage.isUsernameTxtExists(), true);
-		Assert.assertEquals(homePage.isPasswordTxtExists(), true);
+		homePage.validateTopPanel();
+		
+	}
+	
+	@Test
+	public void TC_03_Validate_Login_Fields() {
+		
+		homePage.validateCustomerLoginFields();
 		
 	}	
 
