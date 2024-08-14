@@ -26,24 +26,32 @@ public class Home {
 	}
 	
 	@Test
-	public void TC_01_Navigate_To_Homepage() {
+	public void TC_01_NavigateToHomepage() {
 			
 		dri.navigate().to("https://parabank.parasoft.com/parabank/index.htm");
 		
 	}
 	
 	@Test
-	public void TC_02_Validate_HomePage() {
+	public void TC_02_ValidateHomePage() {
 		
 		homePage.validateTopPanel();
 		
 	}
 	
 	@Test
-	public void TC_03_Validate_Login_Fields() {
+	public void TC_03_ValidateLoginFields() {
 		
 		homePage.validateCustomerLoginFields();
 		
 	}	
+	
+	@Test
+	public void TC_04_TryingToLoginWithoutGivingAnyValuesToUsernameAndPasswordFields() {
+		
+		homePage.clickLoginbtn();
+		Assert.assertEquals(homePage.getErrorMessage(), "Please enter a username and password.");
+		
+	}
 
 }

@@ -2,7 +2,7 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.testng.Assert;
 
 public class HomePage {
@@ -22,6 +22,11 @@ public class HomePage {
 	private By password_txt = By.xpath("//input[@name='password']");
 	private By loginBtn = By.xpath("//input[@type='submit']");
 	private By loginTitle = By.xpath("//div[@id='leftPanel']/h2");
+	private By forgetLogin_Link = By.linkText("Forgot login info?");
+	private By register_Link = By.linkText("Register");
+	
+	//Right Panel Locators:
+	private By errorMessage_p = By.xpath("//div[@id='rightPanel']/p");
 	
 	public void validateTopPanel() {
 		Assert.assertEquals(dri.findElement(homepagelogo_gif).isDisplayed(), true);
@@ -33,6 +38,8 @@ public class HomePage {
 		Assert.assertEquals(dri.findElement(username_txt).isDisplayed(), true);
 		Assert.assertEquals(dri.findElement(password_txt).isDisplayed(), true);
 		Assert.assertEquals(dri.findElement(loginBtn).isDisplayed(), true);	
+		Assert.assertEquals(dri.findElement(forgetLogin_Link).isDisplayed(), true);
+		Assert.assertEquals(dri.findElement(register_Link).isDisplayed(), true);
 	}
 	
 	public void enterUsername(String username) {		
@@ -43,6 +50,14 @@ public class HomePage {
 	}
 	public void clickLoginbtn() {
 		dri.findElement(loginBtn).click();
+	}
+	
+	public void clickForgotLoginInfo() {
+		dri.findElement(forgetLogin_Link).click();
+	}
+	
+	public String getErrorMessage() {
+		return dri.findElement(errorMessage_p).getText();
 	}
 	
 }
