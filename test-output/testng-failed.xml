@@ -5,7 +5,7 @@
     <classes>
       <class name="Tests.Home">
         <methods>
-          <include name="TC_02_Validate_Login_Fields"/>
+          <include name="TC_05_SuccessfulLoginWithCorrectCredientials"/>
           <include name="setup"/>
         </methods>
       </class> <!-- Tests.Home -->
